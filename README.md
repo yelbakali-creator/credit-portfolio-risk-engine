@@ -1,5 +1,7 @@
 # Credit Portfolio Risk Engine: Basel IRB vs Monte Carlo Economic Capital
 
+[![tests](https://github.com/yelbakali-creator/credit-portfolio-risk-engine/actions/workflows/tests.yml/badge.svg)](https://github.com/yelbakali-creator/credit-portfolio-risk-engine/actions/workflows/tests.yml)
+
 A from-scratch Python engine for the credit risk of a corporate loan book, built the way a bank's credit portfolio management or risk team would approach it:
 
 1. **Basel IRB capital** for corporate exposures: asset correlation, maturity adjustment, capital K and risk-weighted assets.
@@ -98,6 +100,7 @@ Compared like for like (capital excluding expected loss), doubling the probabili
 
 ```bash
 pip install -r requirements.txt
+python -m pytest       # 5 automated validation tests
 python run_study.py
 ```
 
