@@ -1,0 +1,12 @@
+check,value
+Expected loss: analytic,112632484.005
+Expected loss: Monte Carlo (multi-factor),112475021.91525
+Monte Carlo standard error of EL,208174.06952936662
+ES 99.9% (multi-factor),838405417.5
+Sum of sector ES contributions,838405417.5
+Sum of obligor ES contributions,838405417.5
+Equal-exposure book: MC capital / IRB (granularity check),0.978726300701816
+Equal-exposure book: 95% CI of that ratio (lower),0.9420868990365286
+Equal-exposure book: 95% CI of that ratio (upper),1.015365702367103
+Herfindahl index of exposures,0.0016891697391881195
+Number of equivalent equal exposures (1 / HHI),592.006816603664

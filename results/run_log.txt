@@ -1,0 +1,77 @@
+Portfolio: 2000 obligors, EAD 19.40bn, analytic EL 112.63m, IRB UL 846.7m at M=1y (1078.6m at M=2.5y), HHI 0.00169 (1/HHI = 592)
+
+IRB formula check
+                          quantity  this_project  published_example_rounded
+     Asset correlation R (PD 1.5%)        0.1767                     0.1768
+Capital K (PD 1.5%, LGD 40%, M 3y)        0.0797                     0.0798
+          RWA on EAD 50m (million)       49.7815                    49.9000
+
+Vasicek convergence
+ obligors  mc_default_rate_99_9  vasicek_limit  relative_gap
+       50               0.18000        0.14027       0.28321
+      200               0.15000        0.14027       0.06935
+     1000               0.14200        0.14027       0.01231
+    10000               0.14020        0.14027      -0.00052
+   100000               0.14043        0.14027       0.00112
+
+Capital comparison
+                          model  expected_loss_mc     var_99_9      es_99_9  economic_capital_var_minus_el  mc_se_expected_loss  irb_unexpected_loss_m1  irb_unexpected_loss_m2_5  ratio_to_irb
+  Single factor (Basel setting)       112533624.0  989167710.0 1199867222.0                    876634086.0             260047.0             846650810.0              1078554557.0           1.0
+        Multi-factor, 8 sectors       112475022.0  719682465.0  838405418.0                    607207443.0             208174.0             846650810.0              1078554557.0           1.0
+Multi-factor, t copula (nu = 5)       112422616.0 2263066209.0 2892651293.0                   2150643593.0             452709.0             846650810.0              1078554557.0           3.0
+
+Equal-exposure book (single factor): MC capital 816.1m vs IRB 833.8m
+
+Validation
+                                                    check        value
+                                  Expected loss: analytic 1.126325e+08
+                Expected loss: Monte Carlo (multi-factor) 1.124750e+08
+                         Monte Carlo standard error of EL 2.081741e+05
+                                  ES 99.9% (multi-factor) 8.384054e+08
+                           Sum of sector ES contributions 8.384054e+08
+                          Sum of obligor ES contributions 8.384054e+08
+Equal-exposure book: MC capital / IRB (granularity check) 9.787263e-01
+        Equal-exposure book: 95% CI of that ratio (lower) 9.420869e-01
+        Equal-exposure book: 95% CI of that ratio (upper) 1.015366e+00
+                            Herfindahl index of exposures 1.689170e-03
+           Number of equivalent equal exposures (1 / HHI) 5.920068e+02
+
+ES by sector
+     sector  exposure_share  expected_loss  es_contribution  es_share
+     Energy           0.147   25081155.018     147282169.50     0.176
+ Financials           0.173   18786644.482     141423547.50     0.169
+Industrials           0.171   17419907.246     153966903.75     0.184
+   Consumer           0.155   14647328.262     131062081.50     0.156
+ Technology           0.122   11767515.714     100098589.50     0.119
+ Healthcare           0.106    9266604.667      74179388.25     0.088
+Real estate           0.078    9340775.206      56849220.00     0.068
+  Utilities           0.049    6165091.321      33543517.50     0.040
+
+ES by rating
+rating  exposure_share  es_contribution  es_share
+   AAA           0.023       2071795.50     0.002
+    AA           0.062       9387771.75     0.011
+     A           0.223      54640341.00     0.065
+   BBB           0.347     181702111.50     0.217
+    BB           0.205     239819539.50     0.286
+     B           0.113     233431105.50     0.278
+   CCC           0.027     117352752.75     0.140
+
+Top 10 contributors
+ obligor rating sector_name         ead    pd  es_contribution
+     671    CCC      Energy 109966000.0 0.150      29443396.50
+    1533     BB    Consumer 182827000.0 0.012      17277151.50
+    1174     BB Industrials 181114000.0 0.012      14670234.00
+     571    BBB  Technology 216609000.0 0.003      11209515.75
+    1595      B  Technology  88765000.0 0.045      10984668.75
+    1662      B Industrials  85176000.0 0.045       9965592.00
+    1378      B    Consumer  74615000.0 0.045       9569373.75
+     561    CCC Real estate  42587000.0 0.150       9198792.00
+    1481     BB Industrials 102183000.0 0.012       8966558.25
+    1286     BB    Consumer 105711000.0 0.012       8324741.25
+
+Stress tests
+          scenario  expected_loss     var_99_9      es_99_9  irb_unexpected_loss_m1
+              Base    112488955.0  712808193.0  846625856.0             846650810.0
+PDs x 2 (downturn)    225295964.0 1124172794.0 1293365025.0            1153371226.0
+  PDs x 3 (severe)    337961758.0 1461722778.0 1644517719.0            1351511491.0
