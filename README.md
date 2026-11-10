@@ -25,7 +25,7 @@ The loan book is an illustrative portfolio of 2,000 corporate obligors (EUR 19.4
 
 - **Name concentration adds capital.** In the Basel setting, the Monte Carlo capital is 4% above the formula. The formula assumes an infinitely granular portfolio, whereas this book behaves like only 592 equal exposures (inverse Herfindahl index): large single names add idiosyncratic risk that the formula ignores.
 - **Sector diversification removes capital.** With 8 partly correlated sectors, capital falls by 28%. The Basel formula assumes a single systematic factor, so it gives no diversification benefit; that is a deliberate regulatory simplification.
-- **The dependence model dominates everything.** With the same probabilities of default and the same correlations, a t copula multiplies capital by 2.5. Its common shock makes defaults cluster in bad years (tail dependence), which a Gaussian copula cannot produce. This is the model risk that surfaced in the 2008 crisis.
+- **The dependence model dominates everything.** With the same probabilities of default and the same correlations, a t copula multiplies capital by 2.5. Its common shock makes defaults cluster in bad years (tail dependence), which a Gaussian copula cannot produce. This is the kind of model risk often cited in the 2008 crisis, when Gaussian copula models understated joint defaults.
 
 ![Loss distribution tails](results/figures/loss_tails.png)
 
@@ -63,13 +63,15 @@ Euler contributions are the expected loss of each obligor in the tail scenarios,
 
 ## Stress tests (8-sector model)
 
-| Scenario | Expected loss | VaR 99.9% | ES 99.9% | IRB capital (M = 1 year) |
-|---|---|---|---|---|
-| Base | 112.5m | 712.8m | 846.6m | 846.7m |
-| PDs x 2 (downturn) | 225.3m | 1,124.2m | 1,293.4m | 1,153.4m |
-| PDs x 3 (severe) | 338.0m | 1,461.7m | 1,644.5m | 1,351.5m |
+| Scenario | Expected loss | VaR 99.9% | ES 99.9% | Capital (VaR - EL) | IRB capital (M = 1 year) |
+|---|---|---|---|---|---|
+| Base | 112.5m | 712.8m | 846.6m | 600.3m | 846.7m |
+| PDs x 2 (downturn) | 225.3m | 1,124.2m | 1,293.4m | 898.9m (+50%) | 1,153.4m (+36%) |
+| PDs x 3 (severe) | 338.0m | 1,461.7m | 1,644.5m | 1,123.8m (+87%) | 1,351.5m (+60%) |
 
-Doubling the probabilities of default raises VaR by 58% but IRB capital by only 36%. The IRB correlation falls as PD rises, which damps the formula's sensitivity in a downturn.
+Stress runs use 100,000 scenarios (200,000 in the main comparison), so the base VaR differs slightly from the key-results table (712.8m vs 719.7m).
+
+Compared like for like (capital excluding expected loss), doubling the probabilities of default raises the Monte Carlo capital by 50% but IRB capital by only 36%. The IRB correlation falls as PD rises, which damps the formula's sensitivity in a downturn.
 
 ## Method notes
 
